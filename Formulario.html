@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Essência de Pele!</title>
+
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+   
+    <link rel="stylesheet" href="Formulario.css">
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100 bg-dark text-white">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="form-container p-4 rounded shadow-lg bg-secondary">
+                    <h1 class="text-center mb-4">Descubra os Produtos Ideais para sua Pele</h1>
+
+                    <form id="skin-form">
+                     
+                        <label class="form-label">Qual seu tipo de pele?</label>
+                        <div class="d-flex flex-wrap gap-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="pele" id="seca" value="seca">
+                                <label class="form-check-label" for="seca">Pele Seca</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="pele" id="mista" value="mista">
+                                <label class="form-check-label" for="mista">Pele Mista</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="pele" id="oleosa" value="oleosa">
+                                <label class="form-check-label" for="oleosa">Pele Oleosa</label>
+                            </div>
+                        </div>
+
+                      
+                        <label class="form-label mt-3">Você tem olheiras?</label>
+                        <div class="d-flex gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="olheiras" id="olheiras-sim" value="sim">
+                                <label class="form-check-label" for="olheiras-sim">Sim</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="olheiras" id="olheiras-nao" value="nao">
+                                <label class="form-check-label" for="olheiras-nao">Não</label>
+                            </div>
+                        </div>
+
+
+                        <div id="olheiras-opcoes" class="hidden mt-3">
+                            <label class="form-label">Qual o tipo de olheiras?</label>
+                            <div class="d-flex gap-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo-olheiras" id="suaves" value="suaves">
+                                    <label class="form-check-label" for="suaves">Suaves</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo-olheiras" id="profundas" value="profundas">
+                                    <label class="form-check-label" for="profundas">Profundas</label>
+                                </div>
+                            </div>
+                        </div>
+
+                      
+                        <label class="form-label mt-3">Você tem linhas de expressão?</label>
+                        <div class="d-flex gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="linhas" id="linhas-sim" value="sim">
+                                <label class="form-check-label" for="linhas-sim">Sim</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="linhas" id="linhas-nao" value="nao">
+                                <label class="form-check-label" for="linhas-nao">Não</label>
+                            </div>
+                        </div>
+
+                     
+                        <label class="form-label mt-3">Você tem pele com acne?</label>
+                        <div class="d-flex gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="acne" id="acne-sim" value="sim">
+                                <label class="form-check-label" for="acne-sim">Sim</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="acne" id="acne-nao" value="nao">
+                                <label class="form-check-label" for="acne-nao">Não</label>
+                            </div>
+                        </div>
+
+                      
+                        <button type="button" class="btn btn-primary w-100 mt-4" onclick="mostrarResultados()">Confirmar!</button>
+                    </form>
+
+                   
+                    <div id="resultado" class="hidden mt-4">
+                        <h2 class="text-center">Sua pele precisa desses produtos:</h2>
+                        <div id="produtos" class="d-flex flex-wrap justify-content-center gap-2 mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.getElementById("olheiras-sim").addEventListener("change", function () {
+            document.getElementById("olheiras-opcoes").classList.remove("hidden");
+        });
+
+        document.getElementById("olheiras-nao").addEventListener("change", function () {
+            document.getElementById("olheiras-opcoes").classList.add("hidden");
+        });
+
+        function mostrarResultados() {
+            const tipoPele = document.querySelector('input[name="pele"]:checked');
+            const temOlheiras = document.querySelector('input[name="olheiras"]:checked');
+            const tipoOlheiras = document.querySelector('input[name="tipo-olheiras"]:checked');
+            const temLinhas = document.querySelector('input[name="linhas"]:checked');
+            const temAcne = document.querySelector('input[name="acne"]:checked');  
+
+            if (!tipoPele || !temOlheiras || !temLinhas || !temAcne) {
+                alert("Por favor, responda todas as perguntas!");
+                return;
+            }
+
+            let imagens = [];
+
+            if (tipoPele.value === "seca") imagens.push("imgSaboneteSeca.jpg");
+            if (tipoPele.value === "mista") imagens.push("imgSaboneteMista.jpg");
+            if (tipoPele.value === "oleosa") imagens.push("imgSaboneteOleosa.jpg");
+
+            if (temOlheiras.value === "sim") {
+                if (tipoOlheiras.value === "suaves") imagens.push("imgOlhos.jfif");
+                if (tipoOlheiras.value === "profundas") imagens.push("imgOlhos2.jpg");
+            }
+
+            if (temLinhas.value === "sim") imagens.push("imgAntiIdade.jpg");
+            if (temAcne.value === "sim") imagens.push("imgAcne.jpg");
+
+            document.getElementById("produtos").innerHTML = imagens.map(img => `<img src="${img}" class="rounded img-fluid" width="80" height="80">`).join("");
+            document.getElementById("resultado").classList.remove("hidden");
+        }
+    </script>
+</body>
+</html>

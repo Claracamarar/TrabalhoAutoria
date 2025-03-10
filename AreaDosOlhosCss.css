@@ -1,0 +1,19 @@
+
+
+.imagem {
+    width: 200px; /* Defina a largura desejada para todas as imagens */
+    height: 200px; /* Defina a altura desejada para todas as imagens */
+    object-fit: cover; /* Faz com que as imagens se ajustem ao tamanho sem distorcer */
+    margin: 10px; /* Adiciona um espaçamento entre as imagens */
+    border-radius: 8px; /* Borda arredondada opcional */
+}
+
+/* Estilo para o container das imagens */
+.galeria {
+    display: flex; /* Organiza as imagens em linha */
+    flex-wrap: wrap; /* Permite que as imagens quebrem para a linha seguinte se necessário */
+    justify-content: center; /* Centraliza as imagens na tela */ 
+}
+  body {
+    background-color: #b366ff;
+  }
